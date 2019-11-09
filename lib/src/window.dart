@@ -6,10 +6,13 @@ class WindowController {
   static final navigator = GlobalKey<NavigatorState>();
 
   /// Pushes this view to the top of the [Navigator] stack
-  static present(ViewControllable viewControllable) async {
+  static present(ViewControllable viewControllable, {bool isInitialRoute = false}) async {
     navigator.currentState.push(MaterialPageRoute(
       builder: (context) => viewControllable,
-      settings: RouteSettings(arguments: viewControllable),
+      settings: RouteSettings(
+          isInitialRoute: isInitialRoute,
+          arguments: viewControllable
+      ),
     ));
   }
 
